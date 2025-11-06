@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - Page Not Found | AWS S3 Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #232F3E 0%, #3d4f63 100%);
+            color: #FFFFFF;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .error-container {
+            text-align: center;
+            max-width: 600px;
+            animation: fadeInUp 0.6s ease;
+        }
+
+        .error-code {
+            font-size: 120px;
+            font-weight: 700;
+            color: #FF9900;
+            line-height: 1;
+            margin-bottom: 20px;
+            text-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        }
+
+        .error-title {
+            font-size: 2rem;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .error-message {
+            font-size: 1.1rem;
+            color: #E9ECEF;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        .error-icon {
+            font-size: 80px;
+            margin-bottom: 30px;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .btn-home {
+            display: inline-block;
+            padding: 15px 40px;
+            background-color: #FF9900;
+            color: #FFFFFF;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(255, 153, 0, 0.3);
+        }
+
+        .btn-home:hover {
+            background-color: #e68a00;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(255, 153, 0, 0.4);
+        }
+
+        .suggestions {
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .suggestions h3 {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            color: #FF9900;
+        }
+
+        .suggestions ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .suggestions li {
+            margin: 10px 0;
+        }
+
+        .suggestions a {
+            color: #17A2B8;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .suggestions a:hover {
+            color: #FF9900;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .error-code {
+                font-size: 80px;
+            }
+
+            .error-title {
+                font-size: 1.5rem;
+            }
+
+            .error-message {
+                font-size: 1rem;
+            }
+
+            .error-icon {
+                font-size: 60px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="error-container">
+        <div class="error-icon">‚òÅÔ∏è</div>
+        <div class="error-code">404</div>
+        <h1 class="error-title">Oops! Page Not Found</h1>
+        <p class="error-message">
+            The page you're looking for seems to have drifted into the cloud. 
+            It might have been moved, deleted, or never existed in the first place.
+        </p>
+        <a href="/" class="btn-home">‚Üê Back to Home</a>
+        
+        <div class="suggestions">
+            <h3>You might be looking for:</h3>
+            <ul>
+                <li><a href="/">Ìø† Homepage</a></li>
+                <li><a href="/#features">‚ú® Features</a></li>
+                <li><a href="/#architecture">ÌøóÔ∏è Architecture</a></li>
+                <li><a href="/#demo">ÔøΩÔøΩ Demo</a></li>
+                <li><a href="/#contact">Ì≥ß Contact</a></li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

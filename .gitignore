@@ -1,0 +1,127 @@
+# AWS Credentials - NEVER commit these!
+*.pem
+*.key
+.aws/
+credentials
+config
+aws-credentials.json
+
+# Environment Variables
+.env
+.env.local
+.env.*.local
+*.env
+
+# MacOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+*.lnk
+
+# Linux
+*~
+.directory
+.Trash-*
+
+# Editor directories and files
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+*.sublime-project
+*.sublime-workspace
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+access-logs/
+error-logs/
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+*.bak
+*.backup
+
+# Node modules (if you add any JavaScript tooling)
+node_modules/
+package-lock.json
+yarn.lock
+
+# Python (if you add any Python scripts)
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+env/
+ENV/
+
+# Testing
+coverage/
+.nyc_output/
+test-results/
+
+# Build outputs
+dist/
+build/
+*.zip
+*.tar.gz
+
+# Secrets and sensitive data
+secrets/
+private/
+*.secret
+*.private
+
+# Large files that shouldn't be in git
+*.mp4
+*.mov
+*.avi
+*.mkv
+videos/
+
+# Downloaded logs and reports
+downloaded-logs/
+reports/
+*.csv
+*.xlsx
+
+# Terraform (if you add IaC later)
+*.tfstate
+*.tfstate.*
+.terraform/
+
+# CloudFormation
+*.template.bak
+
+# Local testing
+local-testing/
+sandbox/
+
+# Documentation builds
+docs/_build/
+site/
+
+# IDE
+*.iml
+.project
+.classpath
+.settings/
+
+# OS generated files
+.fuse_hidden*
+.nfs*

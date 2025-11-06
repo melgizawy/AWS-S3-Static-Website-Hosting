@@ -1,0 +1,29 @@
+{
+  "Role": "arn:aws:iam::ACCOUNT_ID:role/REPLICATION_ROLE_NAME",
+  "Rules": [
+    {
+      "Status": "Enabled",
+      "Priority": 1,
+      "DeleteMarkerReplication": {
+        "Status": "Enabled"
+      },
+      "Filter": {},
+      "Destination": {
+        "Bucket": "arn:aws:s3:::DESTINATION_BUCKET_NAME",
+        "ReplicationTime": {
+          "Status": "Enabled",
+          "Time": {
+            "Minutes": 15
+          }
+        },
+        "Metrics": {
+          "Status": "Enabled",
+          "EventThreshold": {
+            "Minutes": 15
+          }
+        },
+        "StorageClass": "STANDARD"
+      }
+    }
+  ]
+}
