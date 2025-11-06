@@ -1,0 +1,13 @@
+# AWS S3 Bucket Configuration
+# Generated: Thu, Nov  6, 2025  5:55:53 PM
+
+PRIMARY_BUCKET=new-website-website-1762444537
+PRIMARY_REGION=us-east-1
+
+DR_BUCKET=new-website-dr-1762444537
+DR_REGION=us-west-2
+
+LOGS_BUCKET=new-website-logs-1762444537
+LOGS_REGION=us-east-1
+
+WEBSITE_URL=http://new-website-website-1762444537.s3-website-us-east-1.amazonaws.com
