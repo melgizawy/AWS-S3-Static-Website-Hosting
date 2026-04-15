@@ -1,0 +1,12 @@
+{
+  "name": "aws-s3-static-website-hosting",
+  "version": "1.0.0",
+  "private": true,
+  "devDependencies": {
+    "@playwright/test": "1.52.0",
+    "serve": "14.2.4"
+  },
+  "scripts": {
+    "test": "playwright test"
+  }
+}
