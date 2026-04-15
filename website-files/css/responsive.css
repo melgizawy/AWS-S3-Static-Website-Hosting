@@ -38,6 +38,16 @@
         gap: 0;
     }
     
+    [dir="rtl"] .nav-menu {
+        left: auto;
+        right: -100%;
+        transition: right 0.3s ease;
+    }
+
+    [dir="rtl"] .nav-menu.active {
+        right: 0;
+    }
+
     .nav-menu.active {
         left: 0;
     }
@@ -340,6 +350,7 @@
     
     .header,
     .hamburger,
+    .btn-lang,
     .hero-buttons,
     .contact-links,
     .footer {
@@ -349,6 +360,13 @@
     body {
         color: black;
         background: white;
+    }
+
+    /* Preserve RTL direction for Arabic when printing */
+    [dir="rtl"] body,
+    [dir="rtl"] * {
+        direction: rtl;
+        text-align: right;
     }
     
     .hero {

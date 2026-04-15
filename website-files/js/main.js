@@ -5,7 +5,7 @@
 
 // Wait for DOM to be fully loaded
 document.addEventListener("DOMContentLoaded", function () {
-  console.log("��� AWS S3 Portfolio loaded successfully!");
+  console.log("☁️ AWS S3 Portfolio loaded successfully!");
 
   // Initialize all features
   initMobileMenu();
@@ -13,6 +13,7 @@ document.addEventListener("DOMContentLoaded", function () {
   initActiveNavigation();
   initSkillsAnimation();
   initScrollAnimations();
+  initLanguageToggle();
 });
 
 /**
@@ -192,6 +193,44 @@ function initScrollAnimations() {
   }, observerOptions);
 
   animatedElements.forEach((element) => observer.observe(element));
+}
+
+/**
+ * Language Toggle (English ↔ Arabic / LTR ↔ RTL)
+ */
+function initLanguageToggle() {
+  const langBtn = document.getElementById("lang-toggle");
+  if (!langBtn) return;
+
+  const htmlEl = document.documentElement;
+
+  // Restore saved preference
+  const savedLang = localStorage.getItem("preferred-lang");
+  if (savedLang === "ar") {
+    applyLanguage("ar");
+  } else {
+    applyLanguage("en");
+  }
+
+  langBtn.addEventListener("click", function () {
+    const isArabic = htmlEl.getAttribute("lang") === "ar";
+    applyLanguage(isArabic ? "en" : "ar");
+  });
+
+  function applyLanguage(lang) {
+    if (lang === "ar") {
+      htmlEl.setAttribute("lang", "ar");
+      htmlEl.setAttribute("dir", "rtl");
+      langBtn.textContent = "English";
+      langBtn.setAttribute("aria-label", "Switch to English");
+    } else {
+      htmlEl.setAttribute("lang", "en");
+      htmlEl.setAttribute("dir", "ltr");
+      langBtn.textContent = "عربي";
+      langBtn.setAttribute("aria-label", "Switch to Arabic");
+    }
+    localStorage.setItem("preferred-lang", lang);
+  }
 }
 
 /**
