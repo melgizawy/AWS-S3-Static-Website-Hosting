@@ -10,6 +10,16 @@
       href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
+    <script>
+      // Apply saved language preference before page renders to avoid flash
+      (function () {
+        var lang = localStorage.getItem("preferred-lang");
+        if (lang === "ar") {
+          document.documentElement.setAttribute("lang", "ar");
+          document.documentElement.setAttribute("dir", "rtl");
+        }
+      })();
+    </script>
     <style>
         * {
             margin: 0;
@@ -149,29 +159,76 @@
                 font-size: 60px;
             }
         }
+
+        [dir="rtl"] body {
+            text-align: right;
+        }
+
+        [dir="rtl"] .suggestions ul {
+            padding-right: 0;
+        }
     </style>
 </head>
 <body>
     <div class="error-container">
         <div class="error-icon">☁️</div>
         <div class="error-code">404</div>
-        <h1 class="error-title">Oops! Page Not Found</h1>
-        <p class="error-message">
+        <h1 class="error-title" data-i18n="err-title">Oops! Page Not Found</h1>
+        <p class="error-message" data-i18n="err-msg">
             The page you're looking for seems to have drifted into the cloud. 
             It might have been moved, deleted, or never existed in the first place.
         </p>
-        <a href="/" class="btn-home">← Back to Home</a>
+        <a href="/" class="btn-home" data-i18n="err-btn">← Back to Home</a>
         
         <div class="suggestions">
-            <h3>You might be looking for:</h3>
+            <h3 data-i18n="err-suggest-h">You might be looking for:</h3>
             <ul>
-                <li><a href="/">��� Homepage</a></li>
-                <li><a href="/#features">✨ Features</a></li>
-                <li><a href="/#architecture">���️ Architecture</a></li>
-                <li><a href="/#demo">�� Demo</a></li>
-                <li><a href="/#contact">��� Contact</a></li>
+                <li><a href="/">🏠 <span data-i18n="err-link-home">Homepage</span></a></li>
+                <li><a href="/#features">✨ <span data-i18n="err-link-features">Features</span></a></li>
+                <li><a href="/#architecture">🏗️ <span data-i18n="err-link-arch">Architecture</span></a></li>
+                <li><a href="/#demo">🎥 <span data-i18n="err-link-demo">Demo</span></a></li>
+                <li><a href="/#contact">📧 <span data-i18n="err-link-contact">Contact</span></a></li>
             </ul>
         </div>
     </div>
+    <script>
+      (function () {
+        var errorTranslations = {
+          en: {
+            "err-title": "Oops! Page Not Found",
+            "err-msg": "The page you're looking for seems to have drifted into the cloud. It might have been moved, deleted, or never existed in the first place.",
+            "err-btn": "← Back to Home",
+            "err-suggest-h": "You might be looking for:",
+            "err-link-home": "Homepage",
+            "err-link-features": "Features",
+            "err-link-arch": "Architecture",
+            "err-link-demo": "Demo",
+            "err-link-contact": "Contact",
+          },
+          ar: {
+            "err-title": "عذراً! الصفحة غير موجودة",
+            "err-msg": "يبدو أن الصفحة التي تبحث عنها قد انجرفت إلى السحابة. ربما تم نقلها أو حذفها أو أنها لم تكن موجودة أصلاً.",
+            "err-btn": "→ العودة للرئيسية",
+            "err-suggest-h": "ربما تبحث عن:",
+            "err-link-home": "الرئيسية",
+            "err-link-features": "المميزات",
+            "err-link-arch": "المعمارية",
+            "err-link-demo": "التجربة",
+            "err-link-contact": "تواصل",
+          },
+        };
+        var lang = localStorage.getItem("preferred-lang") === "ar" ? "ar" : "en";
+        var t = errorTranslations[lang];
+        document.querySelectorAll("[data-i18n]").forEach(function (el) {
+          var key = el.getAttribute("data-i18n");
+          if (t[key] !== undefined) {
+            el.textContent = t[key];
+          }
+        });
+        if (lang === "ar") {
+          document.title = "404 - الصفحة غير موجودة | AWS S3 Portfolio";
+        }
+      })();
+    </script>
 </body>
 </html>
