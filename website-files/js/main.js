@@ -5,7 +5,7 @@
 
 // Wait for DOM to be fully loaded
 document.addEventListener("DOMContentLoaded", function () {
-  console.log("��� AWS S3 Portfolio loaded successfully!");
+  console.log("☁️ AWS S3 Portfolio loaded successfully!");
 
   // Initialize all features
   initMobileMenu();
@@ -13,6 +13,7 @@ document.addEventListener("DOMContentLoaded", function () {
   initActiveNavigation();
   initSkillsAnimation();
   initScrollAnimations();
+  initLanguageToggle();
 });
 
 /**
@@ -192,6 +193,201 @@ function initScrollAnimations() {
   }, observerOptions);
 
   animatedElements.forEach((element) => observer.observe(element));
+}
+
+/**
+ * Language Toggle (English ↔ Arabic / LTR ↔ RTL)
+ */
+
+var translations = {
+  en: {
+    "page-title": "AWS S3 Portfolio Project | Cloud Engineering",
+    "nav-home": "Home",
+    "nav-features": "Features",
+    "nav-architecture": "Architecture",
+    "nav-demo": "Demo",
+    "nav-contact": "Contact",
+    "hero-title": "AWS S3 Static Website Hosting",
+    "hero-subtitle": "Professional Cloud Engineering Portfolio Project",
+    "hero-desc": "Demonstrating enterprise-grade static website hosting with security, disaster recovery, and cost optimization using Amazon S3",
+    "btn-demo": "View Demo",
+    "btn-github": "View on GitHub",
+    "stat-uptime": "Uptime SLA",
+    "stat-cost": "Cost Savings",
+    "stat-load": "Load Time",
+    "features-title": "Key Features",
+    "features-subtitle": "Enterprise-level capabilities implemented",
+    "f1-title": "Static Website Hosting",
+    "f1-desc": "Serverless architecture with automatic scaling and global availability through AWS S3",
+    "f2-title": "Multi-Layer Security",
+    "f2-desc": "SSE-S3 encryption, IAM policies, bucket policies, and versioning for data protection",
+    "f3-title": "Disaster Recovery",
+    "f3-desc": "Cross-region replication with automated failover and 15-minute RPO",
+    "f4-title": "Cost Optimization",
+    "f4-desc": "Intelligent lifecycle policies, storage tiering, and 95% cost reduction",
+    "f5-title": "Monitoring & Logging",
+    "f5-desc": "CloudWatch metrics, access logs, and real-time performance monitoring",
+    "f6-title": "High Performance",
+    "f6-desc": "Sub-200ms load times with optimized content delivery and caching",
+    "arch-title": "Architecture Overview",
+    "arch-subtitle": "How everything works together",
+    "arch-diagram-title": "📐 Architecture Diagram",
+    "arch-diagram-sub": "See full documentation on GitHub",
+    "arch-stack-h": "Technical Stack",
+    "arch-storage": "Storage:",
+    "arch-security": "Security:",
+    "arch-dr": "DR:",
+    "arch-monitoring": "Monitoring:",
+    "arch-mgmt": "Management:",
+    "arch-frontend": "Frontend:",
+    "arch-metrics-h": "Key Metrics",
+    "demo-title": "Live Demo & Resources",
+    "demo-subtitle": "Explore the project",
+    "d1-title": "📹 Video Demo",
+    "d1-desc": "Watch the complete walkthrough and setup guide",
+    "d1-btn": "Watch Video",
+    "d2-title": "💻 GitHub Repository",
+    "d2-desc": "Access all code, scripts, and documentation",
+    "d2-btn": "View Code",
+    "d3-title": "📚 Documentation",
+    "d3-desc": "Comprehensive guides and architecture details",
+    "d3-btn": "Read Docs",
+    "d4-title": "📊 Performance Report",
+    "d4-desc": "View detailed performance and security analysis",
+    "d4-btn": "View Report",
+    "skills-title": "Skills Demonstrated",
+    "skill-security": "Cloud Security",
+    "skill-dr": "Disaster Recovery",
+    "skill-devops": "DevOps Practices",
+    "skill-cost": "Cost Optimization",
+    "contact-title": "Get In Touch",
+    "contact-subtitle": "Let's connect and collaborate",
+    "contact-email": "Email",
+    "contact-portfolio": "Portfolio",
+    "footer-copy": "© 2025 Mohammad Elgizawy. All rights reserved.",
+    "footer-built": "Built with ❤️ and ☁️ AWS S3",
+    "footer-license": "License",
+    "footer-docs": "Documentation",
+  },
+  ar: {
+    "page-title": "مشروع AWS S3 | هندسة السحابة",
+    "nav-home": "الرئيسية",
+    "nav-features": "المميزات",
+    "nav-architecture": "المعمارية",
+    "nav-demo": "التجربة",
+    "nav-contact": "تواصل",
+    "hero-title": "استضافة موقع ثابت على AWS S3",
+    "hero-subtitle": "مشروع محفظة هندسة السحابة الاحترافية",
+    "hero-desc": "استعراض استضافة المواقع الثابتة على مستوى المؤسسات مع الأمان والتعافي من الكوارث وتحسين التكاليف باستخدام Amazon S3",
+    "btn-demo": "عرض تجريبي",
+    "btn-github": "عرض على GitHub",
+    "stat-uptime": "اتفاقية التشغيل",
+    "stat-cost": "توفير التكاليف",
+    "stat-load": "وقت التحميل",
+    "features-title": "المميزات الرئيسية",
+    "features-subtitle": "قدرات على مستوى المؤسسات",
+    "f1-title": "استضافة مواقع ثابتة",
+    "f1-desc": "معمارية بدون خادم مع التوسع التلقائي والتوافر العالمي عبر AWS S3",
+    "f2-title": "أمان متعدد الطبقات",
+    "f2-desc": "تشفير SSE-S3 وسياسات IAM وسياسات الحاوية والإصدار لحماية البيانات",
+    "f3-title": "التعافي من الكوارث",
+    "f3-desc": "النسخ المتقاطع عبر المناطق مع التبديل التلقائي ونقطة استرداد 15 دقيقة",
+    "f4-title": "تحسين التكاليف",
+    "f4-desc": "سياسات دورة حياة ذكية وطبقات التخزين وتخفيض التكلفة بنسبة 95٪",
+    "f5-title": "المراقبة والتسجيل",
+    "f5-desc": "مقاييس CloudWatch وسجلات الوصول ومراقبة الأداء في الوقت الفعلي",
+    "f6-title": "أداء عالٍ",
+    "f6-desc": "أوقات تحميل أقل من 200 ميلي ثانية مع تسليم المحتوى المحسَّن والتخزين المؤقت",
+    "arch-title": "نظرة عامة على المعمارية",
+    "arch-subtitle": "كيف يعمل كل شيء معاً",
+    "arch-diagram-title": "📐 مخطط المعمارية",
+    "arch-diagram-sub": "راجع التوثيق الكامل على GitHub",
+    "arch-stack-h": "المكدس التقني",
+    "arch-storage": "التخزين:",
+    "arch-security": "الأمان:",
+    "arch-dr": "التعافي:",
+    "arch-monitoring": "المراقبة:",
+    "arch-mgmt": "الإدارة:",
+    "arch-frontend": "الواجهة:",
+    "arch-metrics-h": "المقاييس الرئيسية",
+    "demo-title": "العرض المباشر والموارد",
+    "demo-subtitle": "استكشف المشروع",
+    "d1-title": "📹 فيديو تجريبي",
+    "d1-desc": "شاهد الجولة الكاملة ودليل الإعداد",
+    "d1-btn": "مشاهدة الفيديو",
+    "d2-title": "💻 مستودع GitHub",
+    "d2-desc": "الوصول إلى جميع الأكواد والسكريبتات والتوثيق",
+    "d2-btn": "عرض الكود",
+    "d3-title": "📚 التوثيق",
+    "d3-desc": "أدلة شاملة وتفاصيل المعمارية",
+    "d3-btn": "قراءة التوثيق",
+    "d4-title": "📊 تقرير الأداء",
+    "d4-desc": "عرض تحليل الأداء والأمان التفصيلي",
+    "d4-btn": "عرض التقرير",
+    "skills-title": "المهارات المُثبَتة",
+    "skill-security": "أمان السحابة",
+    "skill-dr": "التعافي من الكوارث",
+    "skill-devops": "ممارسات DevOps",
+    "skill-cost": "تحسين التكاليف",
+    "contact-title": "تواصل معنا",
+    "contact-subtitle": "لنتواصل ونتعاون",
+    "contact-email": "البريد الإلكتروني",
+    "contact-portfolio": "المحفظة",
+    "footer-copy": "© 2025 محمد الجيزاوي. جميع الحقوق محفوظة.",
+    "footer-built": "بُني بـ ❤️ و ☁️ AWS S3",
+    "footer-license": "الترخيص",
+    "footer-docs": "التوثيق",
+  },
+};
+
+function initLanguageToggle() {
+  var langBtn = document.getElementById("lang-toggle");
+  if (!langBtn) return;
+
+  var htmlEl = document.documentElement;
+
+  // Restore saved preference
+  var savedLang = localStorage.getItem("preferred-lang");
+  if (savedLang === "ar") {
+    applyLanguage("ar");
+  } else {
+    applyLanguage("en");
+  }
+
+  langBtn.addEventListener("click", function () {
+    var isArabic = htmlEl.getAttribute("lang") === "ar";
+    applyLanguage(isArabic ? "en" : "ar");
+  });
+
+  function applyTranslations(lang) {
+    var t = translations[lang];
+    if (!t) return;
+    document.querySelectorAll("[data-i18n]").forEach(function (el) {
+      var key = el.getAttribute("data-i18n");
+      if (t[key] !== undefined) {
+        el.textContent = t[key];
+      }
+    });
+    if (t["page-title"]) {
+      document.title = t["page-title"];
+    }
+  }
+
+  function applyLanguage(lang) {
+    if (lang === "ar") {
+      htmlEl.setAttribute("lang", "ar");
+      htmlEl.setAttribute("dir", "rtl");
+      langBtn.textContent = "English";
+      langBtn.setAttribute("aria-label", "Switch to English");
+    } else {
+      htmlEl.setAttribute("lang", "en");
+      htmlEl.setAttribute("dir", "ltr");
+      langBtn.textContent = "عربي";
+      langBtn.setAttribute("aria-label", "Switch to Arabic");
+    }
+    applyTranslations(lang);
+    localStorage.setItem("preferred-lang", lang);
+  }
 }
 
 /**
